@@ -4,7 +4,9 @@ MAINTAINER LSIT Systems <lsitops@lsit.ucsb.edu>
 
 USER root
 
-RUN pip install twarc
+RUN apt update -qq && apt install -yq nano && apt-get clean
+
+RUN pip install palettable twarc
 
 USER $NB_USER
 
