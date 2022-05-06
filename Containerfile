@@ -6,7 +6,7 @@ USER root
 
 RUN apt update -qq && apt install -yq nano && apt-get clean
 
-RUN pip install palettable twarc
+RUN pip install palettable twarc textblob
 
 USER $NB_USER
 
