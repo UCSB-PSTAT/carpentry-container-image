@@ -11,4 +11,3 @@ RUN pip install palettable twarc textblob
 RUN mamba install gdal geos xgboost r-rastervis r-remotes r-sf r-here r-proj4
 
 USER $NB_USER
-
