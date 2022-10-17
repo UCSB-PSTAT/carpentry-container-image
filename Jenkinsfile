@@ -20,9 +20,9 @@ pipeline {
                 stage('Test') {
                     steps {
                         sh 'podman run -it --rm localhost/$IMAGE_NAME which nano'
+			sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"tidyverse\");library(\"palmerpenguins\");library(\"hexbin\");library(\"patchwork\");library(\"RSQLite\");library(\"bookdown\");library(\"rticles\");library(\"BayesFactor\");library(\"pscl\");library(\"here\");library(\"rgdal\")"'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import twarc"'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import textblob; from osgeo import gdal"'
-                        sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"rgdal\")"'
                         sh 'podman run -d --name=$IMAGE_NAME --rm -p 8888:8888 localhost/$IMAGE_NAME start-notebook.sh --NotebookApp.token="jenkinstest"'
                         sh 'sleep 10 && curl -v http://localhost:8888/lab?token=jenkinstest 2>&1 | grep -P "HTTP\\S+\\s200\\s+[\\w\\s]+\\s*$"'
                         sh 'curl -v http://localhost:8888/tree?token=jenkinstest 2>&1 | grep -P "HTTP\\S+\\s200\\s+[\\w\\s]+\\s*$"'
