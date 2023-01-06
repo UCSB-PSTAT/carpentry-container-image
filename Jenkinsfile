@@ -20,7 +20,7 @@ pipeline {
                 stage('Test') {
                     steps {
                         sh 'podman run -it --rm localhost/$IMAGE_NAME which nano'
-			sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"tidyverse\");library(\"palmerpenguins\");library(\"hexbin\");library(\"patchwork\");library(\"RSQLite\");library(\"bookdown\");library(\"rticles\");library(\"BayesFactor\");library(\"pscl\");library(\"here\");library(\"rgdal\");library(\"quarto\");library(\"dplyr\");library(\"plyr\");library(\"gapminder\");library(\"ggplot2\")"'
+			sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"tidyverse\");library(\"palmerpenguins\");library(\"hexbin\");library(\"patchwork\");library(\"RSQLite\");library(\"bookdown\");library(\"rticles\");library(\"BayesFactor\");library(\"pscl\");library(\"here\");library(\"rgdal\");library(\"quarto\");library(\"plyr\");library(\"dplyr\");library(\"gapminder\");library(\"ggplot2\")"'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import twarc"'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import matplotlib"'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import plotnine"'
