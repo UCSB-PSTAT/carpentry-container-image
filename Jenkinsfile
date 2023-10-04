@@ -21,7 +21,7 @@ pipeline {
                 stage('Test') {
                     steps {
                         sh 'podman run -it --rm localhost/$IMAGE_NAME which nano'
-			sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"tidyverse\");library(\"palmerpenguins\");library(\"hexbin\");library(\"patchwork\");library(\"RSQLite\");library(\"bookdown\");library(\"rticles\");library(\"BayesFactor\");library(\"pscl\");library(\"here\");library(\"rgdal\");library(\"quarto\");library(\"plyr\");library(\"dplyr\");library(\"gapminder\");library(\"ggplot2\")"'
+			sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"tidyverse\");library(\"palmerpenguins\");library(\"hexbin\");library(\"patchwork\");library(\"RSQLite\");library(\"bookdown\");library(\"rticles\");library(\"BayesFactor\");library(\"pscl\");library(\"here\");library(\"rgdal\");library(\"quarto\");library(\"plyr\");library(\"dplyr\");library(\"gapminder\");library(\"ggplot2\");library(\"sf\");library(\"terra\")"'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import twarc"'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "from openpyxl import Workbook"'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import matplotlib"'
@@ -54,10 +54,10 @@ pipeline {
     }
     post {
         success {
-            slackSend(channel: '#infrastructure-build', username: 'jenkins', message: "Build ${env.JOB_NAME} ${env.BUILD_NUMBER} just finished successfull! (<${env.BUILD_URL}|Details>)")
+            slackSend(channel: '#infrastructure-build', username: 'jenkins', color: 'good', message: "Build ${env.JOB_NAME} ${env.BUILD_NUMBER} just finished successfull! (<${env.BUILD_URL}|Details>)")
         }
         failure {
-            slackSend(channel: '#infrastructure-build', username: 'jenkins', message: "Uh Oh! Build ${env.JOB_NAME} ${env.BUILD_NUMBER} had a failure! (<${env.BUILD_URL}|Find out why>).")
+            slackSend(channel: '#infrastructure-build', username: 'jenkins', color: 'danger', message: "Uh Oh! Build ${env.JOB_NAME} ${env.BUILD_NUMBER} had a failure! (<${env.BUILD_URL}|Find out why>).")
         }
     }
 }
