@@ -26,7 +26,7 @@ pipeline {
                 stage('Test') {
                     steps {
                         sh 'podman run -it --rm localhost/$IMAGE_NAME which nano'
-			sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"tidyverse\");library(\"palmerpenguins\");library(\"hexbin\");library(\"patchwork\");library(\"RSQLite\");library(\"bookdown\");library(\"rticles\");library(\"BayesFactor\");library(\"pscl\");library(\"here\");library(\"rgdal\");library(\"quarto\");library(\"plyr\");library(\"dplyr\");library(\"gapminder\");library(\"ggplot2\");library(\"sf\");library(\"terra\")"'
+			sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"quarto\");library(\"tidyverse\");library(\"palmerpenguins\");library(\"hexbin\");library(\"patchwork\");library(\"RSQLite\");library(\"bookdown\");library(\"rticles\");library(\"BayesFactor\");library(\"pscl\");library(\"here\");library(\"rgdal\");library(\"plyr\");library(\"dplyr\");library(\"gapminder\");library(\"ggplot2\");library(\"sf\");library(\"terra\")"'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import twarc"'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "from openpyxl import Workbook"'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import matplotlib"'
