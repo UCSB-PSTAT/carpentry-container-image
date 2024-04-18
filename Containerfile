@@ -32,7 +32,7 @@ r-rsqlite \
 r-rticles \
 r-sf \
 r-terra \
-r-tidyterra \
+r::r-tidyterra \
 scikit-learn \
 xgboost 
 
