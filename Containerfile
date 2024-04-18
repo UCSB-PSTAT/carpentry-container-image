@@ -12,8 +12,8 @@ RUN mamba install gdal \
 geos \
 r-BayesFactor \
 r-bookdown \
-r-cowplot\
-r-curl\
+r-cowplot \
+r-curl \
 r-emojifont \
 r-gapminder \
 r-geojsonsf \
