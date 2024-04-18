@@ -25,7 +25,7 @@ r-palmerpenguins \
 r-patchwork \
 r-proj4 \
 r-rastervis \
-r-rcolorbrewer\
+r-rcolorbrewer \
 r-remotes \
 r-rgdal \
 r-rsqlite \
