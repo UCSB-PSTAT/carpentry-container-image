@@ -32,17 +32,19 @@ r-rsqlite \
 r-rticles \
 r-sf \
 r-terra \
-r::r-tidyterra \
 scikit-learn \
-xgboost 
+xgboost && \ 
+    mamba install install r::r-tidyterra && \
+    mamba clean --all
 
 # ORCS package isn't available in Conda/Mamba
 RUN R -e "install.packages(c('orcs'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
-
 
 # Install pre-release version of quarto for the CLI
 RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.467/quarto-1.4.467-linux-amd64.deb && \
     dpkg -i quarto-1.4.467-linux-amd64.deb && \
     rm quarto-1.4.467-linux-amd64.deb
+
+RUN /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
 
 USER $NB_USER
