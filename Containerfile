@@ -36,7 +36,7 @@ xgboost && \
     mamba clean --all
 
 # ORCS package isn't available in Conda/Mamba
-RUN R -e "install.packages(c('orcs', 'emoji','tidyterra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages(c('Orcs', 'emoji','tidyterra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 # Install pre-release version of quarto for the CLI
 RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.467/quarto-1.4.467-linux-amd64.deb && \
