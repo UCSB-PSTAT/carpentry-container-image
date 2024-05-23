@@ -9,7 +9,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt update && \
     apt install -yq nano wget && \
-    apt clean && \
+    apt clean
 
 RUN pip install palettable twarc textblob plotnine openpyxl
 
