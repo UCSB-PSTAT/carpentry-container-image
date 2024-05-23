@@ -12,7 +12,7 @@ RUN apt update && \
 
 RUN pip install palettable twarc textblob plotnine openpyxl
 
-RUN     mamba install -y \
+RUN mamba install -y \
     gdal \
     geos \
     r-BayesFactor \
@@ -31,6 +31,7 @@ RUN     mamba install -y \
     r-rastervis \
     r-rcolorbrewer \
     r-remotes \
+    r-reshape \
     r-rgdal \
     r-rsqlite \
     r-rticles \
