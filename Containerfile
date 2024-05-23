@@ -4,44 +4,51 @@ MAINTAINER LSIT Systems <lsitops@lsit.ucsb.edu>
 
 USER root
 
-RUN apt update -qq && apt install -yq nano wget && apt-get clean
+ENV TZ America/Los_Angeles
+RUN apt update && \
+    apt install -yq nano wget && \
+    apt clean && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN pip install palettable twarc textblob plotnine openpyxl
 
-RUN mamba install gdal \
-geos \
-r-BayesFactor \
-r-bookdown \
-r-cowplot \
-r-curl \
-r-gapminder \
-r-geojsonsf \
-r-ggpubr \
-r-googledrive \
-r-here \
-r-hexbin \
-r-palmerpenguins \
-r-patchwork \
-r-proj4 \
-r-rastervis \
-r-rcolorbrewer \
-r-remotes \
-r-rgdal \
-r-rsqlite \
-r-rticles \
-r-sf \
-r-terra \
-scikit-learn \
-xgboost && \ 
-    mamba clean --all
+RUN mamba install -y \
+    gdal \
+    geos \
+    r-BayesFactor \
+    r-bookdown \
+    r-cowplot \
+    r-curl \
+    r-gapminder \
+    r-geojsonsf \
+    r-ggpubr \
+    r-googledrive \
+    r-here \
+    r-hexbin \
+    r-palmerpenguins \
+    r-patchwork \
+    r-proj4 \
+    r-rastervis \
+    r-rcolorbrewer \
+    r-remotes \
+    r-reshape \
+    r-rgdal \
+    r-rsqlite \
+    r-rticles \
+    r-sf \
+    r-terra \
+    scikit-learn \
+    xgboost && \
+    mamba clean --all && \
+    /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
 
 # ORCS package isn't available in Conda/Mamba
-RUN R -e "install.packages(c('Orcs', 'emoji','tidyterra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages(c('Orcs', 'emoji', 'tidyterra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
-# Install pre-release version of quarto for the CLI
-RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.467/quarto-1.4.467-linux-amd64.deb && \
-    dpkg -i quarto-1.4.467-linux-amd64.deb && \
-    rm quarto-1.4.467-linux-amd64.deb
+# Install the latest version of quarto from the website. 
+RUN wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \
+    dpkg -i quarto-linux-amd64.deb && \
+    rm quarto-linux-amd64.deb
 
 RUN /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
 
