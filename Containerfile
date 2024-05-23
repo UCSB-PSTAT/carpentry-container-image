@@ -5,10 +5,11 @@ MAINTAINER LSIT Systems <lsitops@lsit.ucsb.edu>
 USER root
 
 ENV TZ America/Los_Angeles
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 RUN apt update && \
     apt install -yq nano wget && \
     apt clean && \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN pip install palettable twarc textblob plotnine openpyxl
 
