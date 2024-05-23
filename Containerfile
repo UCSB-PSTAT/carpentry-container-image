@@ -39,8 +39,6 @@ RUN mamba install -y \
     r-terra \
     scikit-learn \
     xgboost && \
-#    r::r-emoji \
-#    r::tidyterra \
     mamba clean --all && \
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
 
