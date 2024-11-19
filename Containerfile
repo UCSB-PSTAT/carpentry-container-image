@@ -13,7 +13,7 @@ RUN apt update && \
 
 RUN pip install palettable twarc textblob plotnine openpyxl
 
-RUN mamba install -y \
+RUN conda install -y \
     gdal \
     geos \
     r-BayesFactor \
@@ -40,7 +40,7 @@ RUN mamba install -y \
     r-terra \
     scikit-learn \
     xgboost && \
-    mamba clean --all && \
+    conda clean --all && \
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
 
 # ORCS package isn't available in Conda/Mamba
