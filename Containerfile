@@ -20,6 +20,7 @@ RUN conda install -y \
     r-bookdown \
     r-cowplot \
     r-curl \
+    r::r-emoji \
     r-gapminder \
     r-geojsonsf \
     r-ggpubr \
@@ -38,13 +39,14 @@ RUN conda install -y \
     r-rticles \
     r-sf \
     r-terra \
+    r::r-tidyterra \
     scikit-learn \
     xgboost && \
     conda clean --all && \
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
 
 # ORCS package isn't available in Conda/Mamba
-RUN R -e "install.packages(c('Orcs', 'emoji', 'tidyterra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages(c('Orcs'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 # Install the latest version of quarto from the website. 
 RUN wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \
