@@ -41,6 +41,7 @@ RUN conda install -y \
     r-terra \
     r::r-tidyterra \
     scikit-learn \
+    seaborn \
     xgboost && \
     conda clean --all && \
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
