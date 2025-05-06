@@ -11,7 +11,7 @@ RUN apt update && \
     apt install -yq nano wget libgdal-dev libgeos-dev libproj-dev libtbb-dev && \
     apt clean
 
-RUN pip install palettable twarc textblob plotnine openpyxl
+RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets
 
 RUN conda install -y \
     gdal \
