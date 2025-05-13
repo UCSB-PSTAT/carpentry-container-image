@@ -73,6 +73,7 @@ pipeline {
                             sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import plotnine"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import numpy"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import pandas"'
+                            sh 'podman run -it --rm localhost/$IMAGE_NAME python -m "spacy validate"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import seaborn"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import textblob; from osgeo import gdal"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import torch; from transformers import pipeline"'
