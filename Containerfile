@@ -16,7 +16,7 @@ RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]
 RUN conda install -y \
     gdal \
     geos \
-    r-BayesFactor \
+    r-bayesfactor \
     r-bookdown \
     r-cowplot \
     r-curl \
