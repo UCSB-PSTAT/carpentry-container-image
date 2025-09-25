@@ -14,12 +14,10 @@ RUN apt update && \
 RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets
 
 RUN conda install -y \
-    gdal \
     geos \
     r-bayesfactor \
     r-bookdown \
     r-cowplot \
-    r-curl \
     r::r-emoji \
     r-gapminder \
     r-geojsonsf \
@@ -37,7 +35,6 @@ RUN conda install -y \
     r-rgdal \
     r-rsqlite \
     r-rticles \
-    r-sf \
     r-terra \
     r::r-tidyterra \
     scikit-learn \
@@ -48,7 +45,7 @@ RUN conda install -y \
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
 
 # ORCS package isn't available in Conda/Mamba
-RUN R -e "install.packages(c('Orcs', 'terra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages(c('Orcs', 'emoji', 'tidyterra'. 'terra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 # Install the latest version of quarto from the website. 
 RUN wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \
