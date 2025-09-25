@@ -18,7 +18,6 @@ RUN conda install -y \
     r-bayesfactor \
     r-bookdown \
     r-cowplot \
-    r::r-emoji \
     r-gapminder \
     r-geojsonsf \
     r-ggpubr \
@@ -36,7 +35,6 @@ RUN conda install -y \
     r-rsqlite \
     r-rticles \
     r-terra \
-    r::r-tidyterra \
     scikit-learn \
     seaborn \
     spacy \
