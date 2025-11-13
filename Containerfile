@@ -19,7 +19,6 @@ RUN conda install -y \
     libgdal \
     r-bookdown \
     r-cowplot \
-    r-gapminder \
     r-geojsonsf \
     r-ggpubr \
     r-googledrive \
@@ -44,7 +43,7 @@ RUN conda install -y \
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
 
 # ORCS package isn't available in Conda/Mamba
-RUN R -e "install.packages(c('Orcs', 'BayesFactor', 'emoji', 'tidyterra', 'terra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages(c('Orcs', 'BayesFactor', 'emoji', 'gapminder', 'tidyterra', 'terra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 # Install the latest version of quarto from the website. 
 RUN wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \
