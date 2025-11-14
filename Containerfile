@@ -13,7 +13,7 @@ RUN apt update && \
 
 RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets
 
-RUN conda install -y \
+RUN conda install -y --channel conda-forge/label/python_rc --channel conda-forge --override-channels\
     geos \
     gdal \
     libgdal \
