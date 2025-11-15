@@ -11,7 +11,7 @@ RUN apt update && \
     apt install -yq nano wget python3-gdal gdal-bin libgdal-dev libgeos-dev libproj-dev libtbb-dev && \
     apt clean
 
-RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets
+RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets gdal
 
 RUN conda install -y --channel conda-forge/label/python_rc --channel conda-forge --override-channels\
     geos \
