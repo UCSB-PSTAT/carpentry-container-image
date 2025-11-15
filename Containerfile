@@ -8,7 +8,7 @@ ENV TZ America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt update && \
-    apt install -yq nano wget gdal-bin libgdal-dev libgeos-dev libproj-dev libtbb-dev && \
+    apt install -yq nano wget python3-gdal gdal-bin libgdal-dev libgeos-dev libproj-dev libtbb-dev && \
     apt clean
 
 RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets
