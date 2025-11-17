@@ -8,20 +8,21 @@ ENV TZ America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt update && \
-    apt install -yq nano wget libgdal-dev libgeos-dev libproj-dev libtbb-dev && \
+    apt install -yq nano wget libgeos-dev libproj-dev libtbb-dev && \
     apt clean
+
+RUN conda install -y -c gdal-master -c conda-forge gdal-master::gdal gdal-master::libgdal
 
 RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets
 
-RUN conda install -y \
-    gdal \
+RUN conda install -y --channel conda-forge --override-channels\
     geos \
-    r-BayesFactor \
+    r-bayesfactor \
     r-bookdown \
     r-cowplot \
-    r-curl \
     r::r-emoji \
     r-gapminder \
+    r-ggwordcloud \
     r-geojsonsf \
     r-ggpubr \
     r-googledrive \
@@ -29,26 +30,30 @@ RUN conda install -y \
     r-hexbin \
     r-palmerpenguins \
     r-patchwork \
+    r-plyr \
     r-proj4 \
+    r-pscl \
     r-rastervis \
     r-rcolorbrewer \
     r-remotes \
     r-reshape \
-    r-rgdal \
     r-rsqlite \
     r-rticles \
+    r-sentimentr \
     r-sf \
+    r-stringr \
+    r-syuzhet \
     r-terra \
     r::r-tidyterra \
+    r-tidytext \
+    r-tidyverse \
+    r-wordcloud2 \
     scikit-learn \
     seaborn \
     spacy \
     xgboost && \
     conda clean --all && \
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
-
-# ORCS package isn't available in Conda/Mamba
-RUN R -e "install.packages(c('Orcs', 'terra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 # Install the latest version of quarto from the website. 
 RUN wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \
