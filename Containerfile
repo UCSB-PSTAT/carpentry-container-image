@@ -20,6 +20,7 @@ RUN conda install -y --channel conda-forge/label/python_rc --channel conda-forge
     r-bayesfactor \
     r-bookdown \
     r-cowplot \
+    r::r-emoji \
     r-gapminder \
     r-ggwordcloud \
     r-geojsonsf \
@@ -53,9 +54,6 @@ RUN conda install -y --channel conda-forge/label/python_rc --channel conda-forge
     xgboost && \
     conda clean --all && \
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
-
-# ORCS package isn't available in Conda/Mamba
-RUN R -e "install.packages(c('emoji', 'Orcs'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 # Install the latest version of quarto from the website. 
 RUN wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \
