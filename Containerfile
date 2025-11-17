@@ -17,8 +17,11 @@ RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]
 
 RUN conda install -y --channel conda-forge/label/python_rc --channel conda-forge --override-channels\
     geos \
+    r-bayesfactor \
     r-bookdown \
     r-cowplot \
+    r-gapminder \
+    r-ggwordcloud \
     r-geojsonsf \
     r-ggpubr \
     r-googledrive \
@@ -26,14 +29,24 @@ RUN conda install -y --channel conda-forge/label/python_rc --channel conda-forge
     r-hexbin \
     r-palmerpenguins \
     r-patchwork \
+    r-plyr \
     r-proj4 \
+    r-pscl \
     r-rastervis \
     r-rcolorbrewer \
     r-remotes \
     r-reshape \
     r-rsqlite \
     r-rticles \
+    r-sentimentr \
+    r-sf \
+    r-stringr \
+    r-syuzhet \
     r-terra \
+    r-tidyterra \
+    r-tidytext \
+    r-tidyverse \
+    r-wordcloud2 \
     scikit-learn \
     seaborn \
     spacy \
@@ -42,7 +55,7 @@ RUN conda install -y --channel conda-forge/label/python_rc --channel conda-forge
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
 
 # ORCS package isn't available in Conda/Mamba
-RUN R -e "install.packages(c('Orcs', 'BayesFactor', 'emoji', 'gapminder', 'ggwordcloud', 'Orcs', 'plyr', 'pscl', 'sentimentr', 'stringr', 'syuzhet', 'tidyterra', 'terra', 'tidytext', 'tidyverse', 'wordcloud2'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages(c('emoji', 'Orcs'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 # Install the latest version of quarto from the website. 
 RUN wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \
