@@ -11,12 +11,12 @@ RUN apt update && \
     apt install -yq nano wget libgeos-dev libproj-dev libtbb-dev && \
     apt clean
 
-RUN conda install -y -c gdal-master -c conda-forge gdal-master::gdal gdal-master::libgdal
-
 RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets
 
-RUN conda install -y --channel conda-forge --override-channels\
+RUN mamba install -y \
+    gdal \
     geos \
+    libgdal \
     r-bayesfactor \
     r-bookdown \
     r-cowplot \
