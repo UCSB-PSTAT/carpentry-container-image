@@ -8,10 +8,12 @@ ENV TZ America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt update && \
-    apt install -yq nano wget python3-gdal gdal-bin libgdal-dev libgeos-dev libproj-dev libtbb-dev && \
+    apt install -yq nano wget libgeos-dev libproj-dev libtbb-dev && \
     apt clean
 
-RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets gdal
+RUN conda install -y -c gdal-master -c conda-forge gdal-master::gdal gdal-master::libgdal
+
+RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets
 
 RUN conda install -y --channel conda-forge/label/python_rc --channel conda-forge --override-channels\
     geos \
@@ -29,7 +31,6 @@ RUN conda install -y --channel conda-forge/label/python_rc --channel conda-forge
     r-rcolorbrewer \
     r-remotes \
     r-reshape \
-    r-rgdal \
     r-rsqlite \
     r-rticles \
     r-terra \
