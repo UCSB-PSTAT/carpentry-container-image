@@ -49,7 +49,6 @@ pipeline {
                             sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"googledrive\")"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"here\")"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"hexbin\")"'
-                            sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"Orcs\")"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"palmerpenguins\")"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"patchwork\")"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"plyr\")"'
