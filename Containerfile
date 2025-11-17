@@ -15,7 +15,7 @@ RUN conda install -y -c gdal-master -c conda-forge gdal-master::gdal gdal-master
 
 RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets
 
-RUN conda install -y --channel conda-forge/label/python_rc --channel conda-forge --override-channels\
+RUN conda install -y --channel conda-forge --override-channels\
     geos \
     r-bayesfactor \
     r-bookdown \
@@ -44,7 +44,7 @@ RUN conda install -y --channel conda-forge/label/python_rc --channel conda-forge
     r-stringr \
     r-syuzhet \
     r-terra \
-    r-tidyterra \
+    r::r-tidyterra \
     r-tidytext \
     r-tidyverse \
     r-wordcloud2 \
