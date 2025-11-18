@@ -13,14 +13,13 @@ RUN apt update && \
 
 RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets
 
-RUN mamba install -y \
+RUN mamba install -y --freeze-installed \
     gdal \
     geos \
     libgdal \
     r-bayesfactor \
     r-bookdown \
     r-cowplot \
-    r::r-emoji \
     r-gapminder \
     r-ggwordcloud \
     r-geojsonsf \
@@ -44,7 +43,6 @@ RUN mamba install -y \
     r-stringr \
     r-syuzhet \
     r-terra \
-    r::r-tidyterra \
     r-tidytext \
     r-tidyverse \
     r-wordcloud2 \
@@ -54,6 +52,9 @@ RUN mamba install -y \
     xgboost && \
     conda clean --all && \
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
+
+# Install some from CRAN to avoid downgrades
+RUN R -e "install.packages(c('emoji', 'tidyterra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 # Install the latest version of quarto from the website. 
 RUN wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \
