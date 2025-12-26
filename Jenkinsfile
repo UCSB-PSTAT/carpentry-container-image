@@ -94,7 +94,7 @@ pipeline {
                             sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import textblob; from osgeo import gdal"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import torch; from transformers import pipeline"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import tqdm"'
-                            sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import from webdriver_manager.firefox import GeckoDriverManager"'
+                            sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "from webdriver_manager.firefox import GeckoDriverManager"'
                             sh 'podman run -it --rm localhost/$IMAGE_NAME python -c "import ipywidgets as widgets"'
                             sh 'podman run -d --name=$IMAGE_NAME --rm -p 8888:8888 localhost/$IMAGE_NAME start-notebook.sh --NotebookApp.token="jenkinstest"'
                             sh 'sleep 10 && curl -v http://localhost:8888/lab?token=jenkinstest 2>&1 | grep -P "HTTP\\S+\\s200\\s+[\\w\\s]+\\s*$"'
