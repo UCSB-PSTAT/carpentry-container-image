@@ -11,9 +11,9 @@ RUN apt update && \
     apt install -yq nano wget libgeos-dev libproj-dev libtbb-dev && \
     apt clean
 
-RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets
+RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets tensorflow-cpu
 
-RUN mamba install -y --freeze-installed \
+RUN mamba install -y \
     gdal \
     geos \
     libgdal \
@@ -54,7 +54,6 @@ RUN mamba install -y --freeze-installed \
     seaborn \
     selenium \
     spacy \
-    tensorflow \
     webdriver-manager \
     xgboost && \
     conda clean --all && \
