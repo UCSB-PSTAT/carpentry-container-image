@@ -17,6 +17,7 @@ RUN mamba install -y --freeze-installed \
     gdal \
     geos \
     libgdal \
+    pydot \
     r-bayesfactor \
     r-bookdown \
     r-cowplot \
@@ -27,6 +28,9 @@ RUN mamba install -y --freeze-installed \
     r-googledrive \
     r-here \
     r-hexbin \
+    r-leaflet \
+    r-lwgeom \
+    r-osmdata \
     r-palmerpenguins \
     r-patchwork \
     r-plyr \
@@ -48,13 +52,16 @@ RUN mamba install -y --freeze-installed \
     r-wordcloud2 \
     scikit-learn \
     seaborn \
+    selenium \
     spacy \
+    tensorflow \
+    webdriver-manager \
     xgboost && \
     conda clean --all && \
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
 
 # Install some from CRAN to avoid downgrades
-RUN R -e "install.packages(c('emoji', 'tidyterra'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages(c('emoji', 'tidyterra', 'ratdat'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 # Install the latest version of quarto from the website. 
 RUN wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \
