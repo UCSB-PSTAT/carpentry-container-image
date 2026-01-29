@@ -16,6 +16,7 @@ RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]
 RUN mamba update --all && mamba install -y --freeze-installed \
     gdal \
     geos \
+    keras \
     libgdal \
     pydot \
     r-bayesfactor \
