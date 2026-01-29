@@ -43,6 +43,7 @@ RUN mamba update --all && mamba install -y --freeze-installed \
     r-rsqlite \
     r-rticles \
     r-sentimentr \
+    r-sf \
     r-stringr \
     r-syuzhet \
     r-terra \
@@ -59,7 +60,7 @@ RUN mamba update --all && mamba install -y --freeze-installed \
     /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
 
 # Install some from CRAN to avoid downgrades
-RUN R -e "install.packages(c('emoji', 'osmdata', 'tidyterra', 'sf', 'ratdat'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages(c('emoji', 'osmdata', 'tidyterra', 'ratdat'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 # Install the latest version of quarto from the website. 
 RUN wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \
