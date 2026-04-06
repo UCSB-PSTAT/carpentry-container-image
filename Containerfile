@@ -13,7 +13,7 @@ RUN apt update && \
 
 RUN pip install palettable twarc textblob plotnine openpyxl 'transformers[torch]' ipywidgets tensorflow-cpu
 
-RUN mamba update --all && mamba install -y --freeze-installed \
+RUN conda install -y  \
     gdal \
     geos \
     keras \
